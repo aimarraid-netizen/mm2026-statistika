@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MM 2026 · Ennustajate karakterid</title>
+<meta name="description" content="16 ennustajat, 16 karakterit. Sõprade MM 2026 ennustusmängu tüpoloogia — pooleldi statistika, pooleldi diagnoos.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MM 2026 · Ennustajate karakterid">
+<meta property="og:description" content="16 ennustajat, 16 karakterit — pooleldi statistika, pooleldi diagnoos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1A2C; --panel:#102A44; --panel2:#0E2138;
+    --chalk:#EDF4FA; --muted:#84A0B8; --line:rgba(255,255,255,.09);
+    --gold:#FFC64B; --green:#3FD07A; --red:#FF6B6B; --blue:#4FB0FF;
+    --disp:'Barlow Condensed',sans-serif; --body:'Inter',sans-serif; --mono:'Space Mono',monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{
+    background:var(--ink); color:var(--chalk); font-family:var(--body);
+    -webkit-font-smoothing:antialiased; line-height:1.5;
+    background-image:
+      radial-gradient(1200px 500px at 80% -5%, rgba(79,176,255,.10), transparent 60%),
+      radial-gradient(900px 500px at 0% 10%, rgba(255,198,75,.07), transparent 55%);
+  }
+  .wrap{max-width:640px; margin:0 auto; padding:0 18px 64px}
+
+  /* header */
+  .top{padding:38px 0 22px; border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:var(--mono); font-size:11.5px; letter-spacing:.28em; color:var(--gold); text-transform:uppercase}
+  .title{font-family:var(--disp); font-weight:800; font-size:clamp(42px,13vw,68px); line-height:.92; letter-spacing:-.01em; margin:8px 0 10px; text-transform:uppercase}
+  .title span{color:var(--gold)}
+  .subtitle{color:var(--muted); font-size:14.5px; max-width:520px}
+  .back{display:inline-flex; align-items:center; gap:7px; margin-top:18px; font-family:var(--mono); font-size:12px; letter-spacing:.05em; color:var(--blue); text-decoration:none; border:1px solid var(--line); border-radius:8px; padding:8px 12px}
+  .back:hover{border-color:var(--blue)}
+
+  /* cards */
+  .cards{display:flex; flex-direction:column; gap:14px; margin-top:26px}
+  .card{
+    background:linear-gradient(180deg,var(--panel),var(--panel2));
+    border:1px solid var(--line); border-radius:14px; padding:20px 20px 18px;
+    position:relative; overflow:hidden;
+  }
+  .card::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--gold)}
+  .card .rk{position:absolute; top:16px; right:18px; font-family:var(--mono); font-size:12px; color:var(--muted)}
+  .card .name{font-family:var(--disp); font-weight:700; font-size:26px; text-transform:uppercase; letter-spacing:.02em; line-height:1; padding-right:34px}
+  .card .nick{display:block; font-family:var(--body); font-weight:600; font-style:italic; font-size:15px; color:var(--gold); margin:8px 0 12px; text-transform:none; letter-spacing:0}
+  .card p{font-size:15px; color:#D3E0EC}
+
+  /* Aimar highlight (nagu 'mina'-rida plakatil) */
+  .card.me::before{background:var(--blue)}
+  .card.me{background:linear-gradient(180deg, rgba(79,176,255,.14), var(--panel2))}
+  .card.me .name{color:var(--blue)}
+  .card.me .nick{color:var(--blue)}
+
+  /* footer */
+  .foot{margin-top:34px; padding-top:20px; border-top:1px solid var(--line); font-family:var(--mono); font-size:12px; color:var(--muted); line-height:1.7}
+  .foot a{color:var(--blue); text-decoration:none}
+
+  @media (max-width:420px){
+    .card .name{font-size:23px}
+    .card p{font-size:14.5px}
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">MM 2026 · Ennustusmäng</div>
+    <h1 class="title">16 ennustajat,<br><span>16 karakterit</span></h1>
+    <p class="subtitle">Pooleldi statistika, pooleldi diagnoos. Kes sa oled, kui numbrid saavad iseloomu?</p>
+    <a class="back" href="./">← Tagasi statistika juurde</a>
+  </header>
+
+  <section class="cards" id="cards"></section>
+
+  <footer class="foot">
+    96 mängu · 215 väravat · 16 ennustajat<br>
+    <a href="./">Statistika-plakat →</a>
+  </footer>
+
+</main>
+
+<script>
+  // [nimi, hüüdnimi, kirjeldus, on_aimar]
+  const people = [
+    ['Aimar','madala skoori raamatupidaja',
+     'Ei usu väravatesse, usub Excelisse. Ennustab nagu inimene, kes kardab 3:2 skoori nähes, et tabel läheb katki. Vähe nulliringe, palju täpseid tabamusi — tüütu, aga töötab. Ilmselt on ta elus samasugune.', true],
+    ['Janusz','ellujäämiskunstnik',
+     'Kõige vähem nulliringe. Ei pruugi alati glamuuritseda, aga kuidagi roomab igast mängust punktiga välja. Hilised väravad on talle nagu isiklik sponsor.'],
+    ['Sebastian','kaos, aga kvalifitseeritud kaos',
+     'Paneb palju väravaid, riskib rohkem kui peaks, aga erinevalt Haniast oskab sellest vahel ka punkte teha. Ennustusstiil: „kui juba mööda, siis vähemalt kinolikult.“'],
+    ['Avo','90+ minuti aktsionär',
+     'Tabelis nii kõrgel osaliselt seetõttu, et hilised väravad on teda kandnud nagu salajane fondijuht. Ilma nendeta kukuks päris valusalt. Aga kuni väravad loevad, on see geniaalne, mitte õnn.'],
+    ['Mihkel','korralik keskmise klassi masin',
+     'Ei tee palju lollusi, ei tee ka piisavalt briljantsust. Stabiilne, viisakas, matemaatiliselt usaldusväärne — ehk ennustusmängu Škoda Octavia.'],
+    ['Timo','hiliste väravate lemmiklaps',
+     'Kui mäng kestaks 85 minutit, oleks Timo kurb inimene. 90+ väravad on talle nagu jõulukingid. Praeguses tabelis tugev, aga alternatiivuniversumis kukuks liftišahti.'],
+    ['Ola & Kaur','konsensuslik, aga mitte surnud',
+     'Üldiselt rahva poolel, piisavalt ohutu, vahel saab punkte ka siis, kui teised paanitsevad. Mitte kõige teravam nuga, aga nuga on vähemalt sahtlis olemas.'],
+    ['Herbert','viigiprohvet, keda maailm reedab',
+     'Ennustab palju viike ja madalaid skoore. Probleem: päris maailm ei austa tema esteetilist minimalismi. Hilised väravad on tema isiklik vaenlane.'],
+    ['Piotrek','napilt seal, kus peab',
+     'Ei paista liiga palju silma, aga tabelis püsib. Selline ennustaja, kes ei tekita emotsiooni enne, kui avastad, et ta on jälle sinust eespool.'],
+    ['Paweł','potentsiaaliga, aga lekib',
+     'Täpsete skooride osas pole halb, aga nulliringe liiga palju. Nagu auto, mille mootor on hea, aga üks rehv on pidevalt tühi.'],
+    ['Magda & Krzysiek','väravaid lubav keskklass',
+     'Ennustab pigem elavamaid mänge, aga punktid ei tule sama entusiasmiga kaasa. Stiil: „paneme 3:1, elu on lühike.“'],
+    ['Joanna & Adam','ettevaatlik, aga steriilne',
+     'Mitte liiga metsik, mitte liiga halb, aga vähe eristuvat sära. Viike ennustavad harva — ja kui ennustavad, siis punktid vaatavad mujale.'],
+    ['Olle & Kätlin','Wolt’i kuller, kes jõuab alati õigesse linna, aga mitte kunagi õige ukse taha',
+     'Suund on enamasti õige, nulliringe vähe, aga täpseid skoore ainult 4. Ennustusstiil: „ma olin ju põhimõtteliselt kohal.“'],
+    ['Jaś','väravainflatsiooni minister',
+     'Armastab suuri skoore. Kui mäng lõppeb 4:3, on ta valmis; kui 0:0, siis süüdistab ilmselt jalgpalli ennast. Meelelahutuslikum kui efektiivne.'],
+    ['Przemek','konsensuse ametnik',
+     'Sageli rahvaga kaasas, aga vähe teravaid tabamusi. Nagu paneks ennustusi pärast seda, kui on lugenud kõigi teiste omad ja valinud keskmise.'],
+    ['Hania','all gas, no brakes',
+     'Kõige rohkem väravaid ennustatud, kõige vähem punkte tipus. See pole strateegia, see on väravapidu, kuhu tegelikud mängud ei saanud kutset. Spectacularly wrong, aga vähemalt mitte igav.']
+  ];
+
+  const el = document.getElementById('cards');
+  people.forEach(([name,nick,desc,me],i)=>{
+    el.insertAdjacentHTML('beforeend',
+      `<article class="card${me?' me':''}">
+        <span class="rk">${String(i+1).padStart(2,'0')}</span>
+        <h2 class="name">${name}<span class="nick">„${nick}“</span></h2>
+        <p>${desc}</p>
+      </article>`);
+  });
+</script>
+</body>
+</html>
