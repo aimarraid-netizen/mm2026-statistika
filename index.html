@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MM 2026 · Ennustusmängu statistika-trivia</title>
+<meta name="description" content="Sõprade MM 2026 ennustusmängu statistika: 96 mängu, 215 väravat, 16 ennustajat.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MM 2026 · Statistika-trivia">
+<meta property="og:description" content="96 mängu · 215 väravat · 16 ennustajat. Kes loeb mängu ja kes lihtsalt loodab.">
+<meta name="theme-color" content="#0B1A2C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1A2C; --panel:#102A44; --panel2:#0E2138;
+    --chalk:#EDF4FA; --muted:#84A0B8; --line:rgba(255,255,255,.09);
+    --gold:#FFC64B; --green:#3FD07A; --red:#FF6B6B; --blue:#4FB0FF;
+    --disp:'Barlow Condensed',sans-serif; --body:'Inter',sans-serif; --mono:'Space Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--ink); color:var(--chalk); font-family:var(--body);
+    -webkit-font-smoothing:antialiased; line-height:1.5;
+    background-image:
+      radial-gradient(1200px 500px at 80% -5%, rgba(79,176,255,.10), transparent 60%),
+      radial-gradient(900px 500px at 0% 10%, rgba(255,198,75,.07), transparent 55%);
+  }
+  .poster{max-width:1120px; margin:0 auto; padding:0 22px 70px}
+
+  /* ---------- HEADER ---------- */
+  .top{padding:46px 0 26px; border-bottom:1px solid var(--line); position:relative}
+  .eyebrow{font-family:var(--mono); font-size:12.5px; letter-spacing:.32em; color:var(--gold); text-transform:uppercase}
+  .title{font-family:var(--disp); font-weight:800; font-size:clamp(58px,11vw,120px); line-height:.9; letter-spacing:-.01em; margin:10px 0 6px; text-transform:uppercase}
+  .title span{color:var(--gold)}
+  .subtitle{color:var(--muted); font-size:15px; max-width:560px}
+
+  /* scoreboard hero */
+  .board{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:30px}
+  .cell{
+    background:linear-gradient(180deg,var(--panel),var(--panel2));
+    border:1px solid var(--line); border-radius:14px; padding:26px 28px; position:relative; overflow:hidden;
+  }
+  .cell::before{content:""; position:absolute; left:0; top:0; bottom:0; width:5px; background:var(--gold)}
+  .cell.blue::before{background:var(--blue)}
+  .cell .num{font-family:var(--mono); font-weight:700; font-size:clamp(52px,9vw,86px); line-height:1; letter-spacing:-.02em}
+  .cell .lbl{font-family:var(--disp); font-weight:600; text-transform:uppercase; letter-spacing:.14em; font-size:17px; color:var(--muted); margin-top:10px}
+  .cell .foot{font-family:var(--mono); font-size:11.5px; color:var(--muted); margin-top:4px}
+
+  /* ---------- SECTION ---------- */
+  section{margin-top:42px}
+  .sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:18px}
+  .sec-num{font-family:var(--mono); font-size:13px; color:var(--gold)}
+  .sec-title{font-family:var(--disp); font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:30px; line-height:1}
+  .sec-note{margin-left:auto; color:var(--muted); font-size:13px; font-family:var(--mono)}
+
+  /* three facts */
+  .facts{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  .fact{background:var(--panel2); border:1px solid var(--line); border-radius:14px; padding:22px; position:relative}
+  .fact .tag{font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:10px}
+  .fact p{font-size:14.5px; color:#D3E0EC}
+  .fact b{color:var(--chalk)}
+  .fact .who{font-family:var(--disp); font-weight:700; font-size:22px; text-transform:uppercase; margin-bottom:4px; letter-spacing:.02em}
+  .fact .fnum{font-family:var(--mono); font-size:22px; font-weight:700; color:var(--gold); display:block; margin-bottom:12px}
+
+  /* standings + movers layout */
+  .stand-wrap{display:grid; grid-template-columns:1.15fr 1fr; gap:26px; align-items:start}
+  .movers{display:flex; flex-direction:column; gap:16px}
+  .mv-block{background:var(--panel2); border:1px solid var(--line); border-radius:14px; padding:18px 20px}
+  .mv-k{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:12px}
+  .up-block .mv-k{color:var(--green)} .down-block .mv-k{color:var(--red)}
+  .mv-row{display:flex; justify-content:space-between; align-items:center; padding:6px 0; font-size:15px; font-weight:600}
+  .mv-row b{font-family:var(--mono); font-size:14px}
+  .mv-note{font-size:13px; color:var(--muted); line-height:1.55; padding:2px 4px}
+
+  /* standings table */
+  .tbl{width:100%; border-collapse:collapse; font-size:14.5px}
+  .tbl th{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); text-align:left; padding:0 12px 12px; border-bottom:1px solid var(--line)}
+  .tbl td{padding:11px 12px; border-bottom:1px solid rgba(255,255,255,.05)}
+  .tbl .rk{font-family:var(--mono); color:var(--muted); width:34px}
+  .tbl .nm{font-weight:600}
+  .tbl .pt{font-family:var(--mono); font-weight:700; text-align:right}
+  .tbl .mv{text-align:right; font-family:var(--mono); font-size:13px; width:54px}
+  .up{color:var(--green)} .down{color:var(--red)} .same{color:var(--muted)}
+  .row-hi{background:linear-gradient(90deg,rgba(255,198,75,.10),transparent)}
+  .row-hi .nm{color:var(--gold)}
+  .row-me{background:linear-gradient(90deg,rgba(79,176,255,.12),transparent)}
+  .row-me .nm{color:var(--blue)}
+  .crown{font-size:12px}
+
+  /* goals bars */
+  .bars{display:flex; flex-direction:column; gap:9px}
+  .bar{display:grid; grid-template-columns:150px 1fr 52px; align-items:center; gap:14px}
+  .bar .bn{font-weight:600; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .bar .track{height:16px; background:rgba(255,255,255,.05); border-radius:6px; overflow:hidden}
+  .bar .fill{height:100%; background:linear-gradient(90deg,var(--gold),#FFD887); border-radius:6px}
+  .bar .bv{font-family:var(--mono); font-size:13px; text-align:right; color:var(--muted)}
+  .bar.top .fill{background:linear-gradient(90deg,#FF8A5B,var(--gold))}
+  .bar.top .bn,.bar.top .bv{color:var(--gold)}
+  .bar.me .fill{background:linear-gradient(90deg,var(--blue),#8fd0ff)}
+  .bar.me .bn,.bar.me .bv{color:var(--blue)}
+  .avg-note{margin-top:14px; font-size:13px; color:var(--muted); font-family:var(--mono)}
+  .avg-note b{color:var(--chalk)}
+  .lead-note{margin:-4px 0 20px; font-size:15px; color:#D3E0EC; max-width:640px}
+  .lead-note b{color:var(--chalk)}
+  .bars{position:relative}
+  .goalline{position:absolute; top:-6px; bottom:26px; width:2px; background:var(--green); z-index:3}
+  .goalline::after{content:"215"; position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-family:var(--mono); font-size:11px; font-weight:700; color:var(--green); white-space:nowrap}
+  .bar.acc .fill{background:linear-gradient(90deg,var(--green),#8be0ac)}
+  .bar.acc .bn,.bar.acc .bv{color:var(--green)}
+
+  /* two columns matches */
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  .mcard{background:var(--panel2); border:1px solid var(--line); border-radius:14px; padding:22px}
+  .mcard h3{font-family:var(--disp); font-weight:700; text-transform:uppercase; font-size:20px; letter-spacing:.03em; margin-bottom:4px}
+  .mcard .sub{color:var(--muted); font-size:12.5px; font-family:var(--mono); margin-bottom:16px}
+  .mrow{display:flex; align-items:center; gap:10px; padding:8px 0; border-top:1px solid rgba(255,255,255,.05); font-size:13.5px}
+  .mrow:first-of-type{border-top:none}
+  .mrow .g{flex:1}
+  .chip{font-family:var(--mono); font-weight:700; font-size:12px; padding:3px 9px; border-radius:6px; background:rgba(255,255,255,.06); white-space:nowrap}
+  .chip.z{color:var(--red); background:rgba(255,107,107,.10)}
+  .chip.e{color:var(--green); background:rgba(63,208,122,.10)}
+
+  /* draw + late split cards */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  .scard{background:var(--panel2); border:1px solid var(--line); border-radius:14px; padding:22px}
+  .scard .k{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:14px}
+  .best .k{color:var(--green)} .worst .k{color:var(--red)}
+  .pl{display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-top:1px solid rgba(255,255,255,.05)}
+  .pl:first-of-type{border-top:none}
+  .pl .n{font-weight:600; font-size:15px}
+  .pl .d{font-family:var(--mono); font-size:12px; color:var(--muted)}
+  .pl .v{font-family:var(--disp); font-weight:800; font-size:26px}
+  .pl .v.pos{color:var(--green)} .pl .v.neg{color:var(--red)} .pl .v.g{color:var(--gold)}
+
+  .scard-note{margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,.06); font-size:12.5px; color:var(--muted); line-height:1.5}
+  .funny{margin-top:18px; background:linear-gradient(90deg,rgba(255,198,75,.10),transparent); border-left:3px solid var(--gold); border-radius:0 10px 10px 0; padding:16px 20px; font-size:14.5px; color:#E7EFF6}
+
+  footer{margin-top:52px; padding-top:22px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-family:var(--mono); font-size:11.5px; flex-wrap:wrap; gap:10px}
+
+  @media (max-width:820px){
+    .board,.facts,.cols,.split,.stand-wrap{grid-template-columns:1fr}
+    .poster{padding:0 16px 50px}
+    .title{font-size:clamp(46px,14vw,74px)}
+    .cell{padding:22px 22px}
+    .cell .num{font-size:66px}
+    .cell .lbl{font-size:16px}
+    .cell .foot{font-size:12.5px}
+    .sec-title{font-size:28px}
+    .sec-note{display:none}
+    /* faktid */
+    .fact{padding:20px}
+    .fact .fnum{font-size:20px}
+    .fact p{font-size:16px}
+    /* tabel */
+    .tbl th{font-size:12px}
+    .tbl td{padding:13px 10px; font-size:16.5px}
+    .tbl .pt{font-size:17px}
+    .tbl .mv{font-size:15px; width:48px}
+    .tbl .rk{width:30px}
+    /* liikujad */
+    .mv-k{font-size:12px}
+    .mv-row{font-size:16.5px; padding:8px 0}
+    .mv-row b{font-size:15px}
+    /* väravaribad */
+    .bar{grid-template-columns:112px 1fr 40px; gap:9px}
+    .bar .bn{font-size:13px}
+    .bar .track{height:18px}
+    .bar .bv{font-size:13.5px}
+    .lead-note{font-size:16px}
+    .avg-note{font-size:14px}
+    .goalline::after{font-size:12px}
+    /* mängud */
+    .mcard{padding:18px}
+    .mcard h3{font-size:19px}
+    .mrow{font-size:15px; padding:10px 0}
+    .chip{font-size:13px; padding:4px 9px}
+    /* viigid + hilised */
+    .scard{padding:20px}
+    .scard .k{font-size:12px}
+    .pl .n{font-size:17px}
+    .pl .d{font-size:13.5px}
+    .pl .v{font-size:28px}
+    .scard-note{font-size:13.5px}
+    .funny{font-size:16px; padding:16px 18px}
+    footer{font-size:12px}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0; transform:translateY(14px); animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+    @keyframes rise{to{opacity:1; transform:none}}
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <header class="top reveal">
+    <h1 class="title">Statistika-<span>trivia.</span></h1>
+    <div class="board">
+      <div class="cell">
+        <div class="num">96</div>
+        <div class="lbl">Peetud mängu</div>
+        <div class="foot">grupifaas + play-off, kuni veerandfinaalideni</div>
+      </div>
+      <div class="cell blue">
+        <div class="num">215</div>
+        <div class="lbl">Löödud väravat</div>
+        <div class="foot">keskmiselt 2.24 väravat mängus</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- FACTS -->
+  <section class="reveal">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">Kolm fakti</h2>
+    </div>
+    <div class="facts">
+      <div class="fact">
+        <span class="fnum">01</span>
+        <p>Kui Hania oleks ennustanud kõik mängud 2:1, siis oleks tal rohkem punkte kui tal praegu on.</p>
+      </div>
+      <div class="fact">
+        <span class="fnum">02</span>
+        <p>Kauril, Ollel, Avol ja Sebastianil on täpselt sama arv nulliga lõppenud ennustusi, aga punktisumma kõigub 63–71.</p>
+      </div>
+      <div class="fact">
+        <span class="fnum">03</span>
+        <p>Vanade reeglitega (kus lugesid vaid normaalaja väravad) juhiks ennustustabelit Janusz 3 punktiga minu ees.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OLD VS NEW -->
+  <section class="reveal">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Vana süsteem vs praegune</h2>
+      <span class="sec-note">↑↓ = kohamuutus praeguse suhtes</span>
+    </div>
+    <div class="stand-wrap">
+      <table class="tbl">
+        <thead><tr><th class="rk">#</th><th>Mängija</th><th style="text-align:right">Vana</th><th style="text-align:right">±</th></tr></thead>
+        <tbody id="standings"></tbody>
+      </table>
+      <aside class="movers">
+        <div class="mv-block up-block">
+          <div class="mv-k">Suurimad tõusjad</div>
+          <div class="mv-row"><span>Piotrek</span><b class="up">↑ 3</b></div>
+          <div class="mv-row"><span>Olle &amp; Kätlin</span><b class="up">↑ 2</b></div>
+        </div>
+        <div class="mv-block down-block">
+          <div class="mv-k">Suurimad langejad</div>
+          <div class="mv-row"><span>Avo</span><b class="down">↓ 3</b></div>
+          <div class="mv-row"><span>Timo</span><b class="down">↓ 3</b></div>
+          <div class="mv-row"><span>Paweł</span><b class="down">↓ 2</b></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- PREDICTED GOALS -->
+  <section class="reveal">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Väravate koguarv</h2>
+    </div>
+    <p class="lead-note">Seni on turniiril löödud <b>215 väravat</b>. Iga riba näitab, mitu väravat mängija oma ennustustes kokku ette nägi.</p>
+    <div class="bars" id="goalbars"></div>
+    <p class="avg-note">Roheline joon = tegelik 215. Kõige täpsem oli <b>Joanna &amp; Adam — 216</b>, ainult üks mööda. Hania tippis 331, tervelt 116 väravat üle tegeliku.</p>
+  </section>
+
+  <!-- MATCHES -->
+  <section class="reveal">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Raskeimad & lihtsaimad mängud</h2>
+    </div>
+    <div class="cols">
+      <div class="mcard">
+        <h3>Täielikud nulliringid</h3>
+        <div class="sub">keegi 16-st ei saanud punktigi</div>
+        <div id="hard"></div>
+      </div>
+      <div class="mcard">
+        <h3>Kõik said punkte</h3>
+        <div class="sub">arv näitab, mitu said 2+ punkti</div>
+        <div id="easy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRAWS -->
+  <section class="reveal">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Viigiennustuse kunst</h2>
+    </div>
+    <div class="split">
+      <div class="scard best">
+        <div class="k">Parimad viigiennustajad</div>
+        <div class="pl"><div><div class="n">Aimar</div><div class="d">17 viiki · 14p</div></div><div class="v pos">0.82</div></div>
+        <div class="pl"><div><div class="n">Sebastian</div><div class="d">20 viiki · 15p</div></div><div class="v pos">0.75</div></div>
+        <div class="pl"><div><div class="n">Janusz</div><div class="d">24 viiki · 16p</div></div><div class="v pos">0.67</div></div>
+        <div class="scard-note">Avo oli Janusziga sama tootlusega (0.67), aga vähem punkte kokku: 12 viigist 8p.</div>
+      </div>
+      <div class="scard worst">
+        <div class="k">Halvimad viigiennustajad</div>
+        <div class="pl"><div><div class="n">Joanna &amp; Adam</div><div class="d">8 viiki · 0p</div></div><div class="v neg">0.00</div></div>
+        <div class="pl"><div><div class="n">Przemek</div><div class="d">11 viiki · 3p</div></div><div class="v neg">0.27</div></div>
+        <div class="pl"><div><div class="n">Jaś</div><div class="d">14 viiki · 4p</div></div><div class="v neg">0.29</div></div>
+      </div>
+    </div>
+    <div class="funny">Kõige naljakam: Janusz ennustab viike kõige kasumlikumalt punktide kogusummas, aga Aimaril on parim kvaliteet ühe viigiennustuse kohta.</div>
+  </section>
+
+  <!-- LATE GOALS -->
+  <section class="reveal">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title">Hiliste väravate (86'+) lotomäng</h2>
+      <span class="sec-note">punktid, mis kukkusid või kadusid lõpuminutitel</span>
+    </div>
+    <div class="split">
+      <div class="scard best">
+        <div class="k">Suurimad võitjad</div>
+        <div class="pl"><div class="n">Avo</div><div class="v pos">+12p</div></div>
+        <div class="pl"><div class="n">Timo</div><div class="v pos">+12p</div></div>
+        <div class="pl"><div class="n">Janusz</div><div class="v pos">+10p</div></div>
+      </div>
+      <div class="scard worst">
+        <div class="k">Suurimad kaotajad</div>
+        <div class="pl"><div class="n">Herbert</div><div class="v neg">−4p</div></div>
+        <div class="pl"><div class="n">Ola &amp; Kaur</div><div class="v neg">−3p</div></div>
+        <div class="pl"><div class="n">Piotrek</div><div class="v neg">−2p</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>MM 2026 · Ennustusmängu statistika · seis veerandfinaalide eel</span>
+    <span>96 mängu · 215 väravat · 16 ennustajat</span>
+  </footer>
+
+</div>
+
+<script>
+  const standings=[
+    [1,'Janusz',81,1],[2,'Aimar',79,-1],[3,'Sebastian',71,0],[4,'Mihkel',70,1],
+    [5,'Ola & Kaur',68,0],[5,'Piotrek',68,3],[7,'Avo',67,-3],[8,'Herbert',65,0],
+    [8,'Timo',65,-3],[10,'Olle & Kätlin',64,2],[11,'Magda & Krzysiek',63,-1],[12,'Paweł',62,-2],
+    [13,'Joanna & Adam',61,-1],[14,'Przemek',59,1],[15,'Jaś',58,-1],[16,'Hania',51,0]
+  ];
+  const sb=document.getElementById('standings');
+  standings.forEach(([rk,nm,pt,mv])=>{
+    const mvTxt = mv>0?`↑ ${mv}`:mv<0?`↓ ${Math.abs(mv)}`:'–';
+    const mvCls = mv>0?'up':mv<0?'down':'same';
+    const rowCls = nm==='Janusz'?'row-hi':nm==='Aimar'?'row-me':'';
+    const crown = rk===1?' <span class="crown">👑</span>':'';
+    sb.insertAdjacentHTML('beforeend',
+      `<tr class="${rowCls}"><td class="rk">${rk}</td><td class="nm">${nm}${crown}</td><td class="pt">${pt}</td><td class="mv ${mvCls}">${mvTxt}</td></tr>`);
+  });
+
+  const goals=[
+    ['Hania',331],['Jaś',296],['Sebastian',294],['Timo',260],['Magda & Krzysiek',256],
+    ['Olle & Kätlin',249],['Paweł',248],['Piotrek',244],['Przemek',242],['Mihkel',240],
+    ['Avo',238],['Ola & Kaur',238],['Janusz',229],['Joanna & Adam',216],['Aimar',189],['Herbert',186]
+  ];
+  const max=331, gb=document.getElementById('goalbars');
+  goals.forEach(([nm,v])=>{
+    const cls = nm==='Joanna & Adam'?'acc':'';
+    gb.insertAdjacentHTML('beforeend',
+      `<div class="bar ${cls}"><div class="bn">${nm}</div><div class="track"><div class="fill" style="width:${(v/max*100).toFixed(1)}%"></div></div><div class="bv">${v}</div></div>`);
+  });
+  // tegelik 215 joon — mõõdan esimese riba geomeetria (töötab nii desktopil kui mobiilis)
+  function placeGoalline(){
+    const track=gb.querySelector('.track'); if(!track) return;
+    let ln=gb.querySelector('.goalline');
+    if(!ln){ ln=document.createElement('div'); ln.className='goalline'; gb.appendChild(ln); }
+    const left=track.offsetLeft + track.offsetWidth*(215/max);
+    ln.style.left=left+'px';
+  }
+  placeGoalline();
+  window.addEventListener('resize', placeGoalline);
+
+  const hard=[
+    ['Australia – Turkiye','2:0'],['Spain – Cape Verde','0:0'],['Belgium – Egypt','1:1'],
+    ['Portugal – Congo DR','1:1'],['Turkiye – Paraguay','0:1'],['England – Ghana','0:0'],
+    ['South Africa – Korea Rep.','1:0'],['Ecuador – Germany','2:1'],['Turkiye – USA','3:2'],
+    ['Germany – Paraguay','1:1 x']
+  ];
+  const hd=document.getElementById('hard');
+  hard.forEach(([g,s])=>hd.insertAdjacentHTML('beforeend',
+    `<div class="mrow"><span class="g">${g}</span><span class="chip z">${s}</span></div>`));
+
+  const easy=[
+    ['Curacao – Ivory Coast','0:2',9],['Panama – England','0:2',8],['Brazil – Haiti','3:0',7],
+    ['France – Iraq','3:0',6],['Germany – Ivory Coast','2:1',4],['England – Congo DR','2:1',3],
+    ['Spain – Austria','3:0',3],['Argentina – Austria','2:0',2]
+  ];
+  const ed=document.getElementById('easy');
+  easy.forEach(([g,s,n])=>ed.insertAdjacentHTML('beforeend',
+    `<div class="mrow"><span class="g">${g}</span><span class="chip">${s}</span><span class="chip e">${n}× 2+</span></div>`));
+</script>
+</body>
+</html>
