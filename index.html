@@ -228,45 +228,13 @@
         <span class="fnum">02</span>
         <p>Kauril, Ollel, Avol ja Sebastianil on täpselt sama arv nulliga lõppenud ennustusi, aga punktisumma kõigub 63–71.</p>
       </div>
-      <div class="fact">
-        <span class="fnum">03</span>
-        <p>Vanade reeglitega (kus lugesid vaid normaalaja väravad) juhiks ennustustabelit Janusz 3 punktiga Aimari ees.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- OLD VS NEW -->
-  <section class="reveal">
-    <div class="sec-head">
-      <span class="sec-num">02</span>
-      <h2 class="sec-title">Vana süsteem vs praegune</h2>
-      <span class="sec-note">↑↓ = kohamuutus praeguse suhtes</span>
-    </div>
-    <div class="stand-wrap">
-      <table class="tbl">
-        <thead><tr><th class="rk">#</th><th>Mängija</th><th style="text-align:right">Vana</th><th style="text-align:right">±</th></tr></thead>
-        <tbody id="standings"></tbody>
-      </table>
-      <aside class="movers">
-        <div class="mv-block up-block">
-          <div class="mv-k">Suurimad tõusjad</div>
-          <div class="mv-row"><span>Piotrek</span><b class="up">↑ 3</b></div>
-          <div class="mv-row"><span>Olle &amp; Kätlin</span><b class="up">↑ 2</b></div>
-        </div>
-        <div class="mv-block down-block">
-          <div class="mv-k">Suurimad langejad</div>
-          <div class="mv-row"><span>Avo</span><b class="down">↓ 3</b></div>
-          <div class="mv-row"><span>Timo</span><b class="down">↓ 3</b></div>
-          <div class="mv-row"><span>Paweł</span><b class="down">↓ 2</b></div>
-        </div>
-      </aside>
     </div>
   </section>
 
   <!-- PREDICTED GOALS -->
   <section class="reveal">
     <div class="sec-head">
-      <span class="sec-num">03</span>
+      <span class="sec-num">02</span>
       <h2 class="sec-title">Väravate koguarv</h2>
     </div>
     <p class="lead-note">Seni on turniiril löödud <b>215 väravat</b>. Iga riba näitab, mitu väravat mängija oma ennustustes kokku ette nägi.</p>
@@ -277,7 +245,7 @@
   <!-- MATCHES -->
   <section class="reveal">
     <div class="sec-head">
-      <span class="sec-num">04</span>
+      <span class="sec-num">03</span>
       <h2 class="sec-title">Raskeimad & lihtsaimad mängud</h2>
     </div>
     <div class="cols">
@@ -297,7 +265,7 @@
   <!-- DRAWS -->
   <section class="reveal">
     <div class="sec-head">
-      <span class="sec-num">05</span>
+      <span class="sec-num">04</span>
       <h2 class="sec-title">Viigiennustuse kunst</h2>
     </div>
     <div class="split">
@@ -321,7 +289,7 @@
   <!-- LATE GOALS -->
   <section class="reveal">
     <div class="sec-head">
-      <span class="sec-num">06</span>
+      <span class="sec-num">05</span>
       <h2 class="sec-title">Hiliste väravate (86'+) lotomäng</h2>
       <span class="sec-note">punktid, mis kukkusid või kadusid lõpuminutitel</span>
     </div>
@@ -351,22 +319,6 @@
 </div>
 
 <script>
-  const standings=[
-    [1,'Janusz',81,1],[2,'Aimar',79,-1],[3,'Sebastian',71,0],[4,'Mihkel',70,1],
-    [5,'Ola & Kaur',68,0],[5,'Piotrek',68,3],[7,'Avo',67,-3],[8,'Herbert',65,0],
-    [8,'Timo',65,-3],[10,'Olle & Kätlin',64,2],[11,'Magda & Krzysiek',63,-1],[12,'Paweł',62,-2],
-    [13,'Joanna & Adam',61,-1],[14,'Przemek',59,1],[15,'Jaś',58,-1],[16,'Hania',51,0]
-  ];
-  const sb=document.getElementById('standings');
-  standings.forEach(([rk,nm,pt,mv])=>{
-    const mvTxt = mv>0?`↑ ${mv}`:mv<0?`↓ ${Math.abs(mv)}`:'–';
-    const mvCls = mv>0?'up':mv<0?'down':'same';
-    const rowCls = nm==='Janusz'?'row-hi':nm==='Aimar'?'row-me':'';
-    const crown = rk===1?' <span class="crown">👑</span>':'';
-    sb.insertAdjacentHTML('beforeend',
-      `<tr class="${rowCls}"><td class="rk">${rk}</td><td class="nm">${nm}${crown}</td><td class="pt">${pt}</td><td class="mv ${mvCls}">${mvTxt}</td></tr>`);
-  });
-
   const goals=[
     ['Hania',331],['Jaś',296],['Sebastian',294],['Timo',260],['Magda & Krzysiek',256],
     ['Olle & Kätlin',249],['Paweł',248],['Piotrek',244],['Przemek',242],['Mihkel',240],
