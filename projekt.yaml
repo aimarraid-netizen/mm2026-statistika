@@ -1,0 +1,19 @@
+# Projektikataloogi kirje — skeem ja väljad: ~/projects/kataloog/CLAUDE.md (genereerib :8080/#projektid, registri, backup-nimekirja)
+nimi: MM 2026 statistika-plakat
+grupp: ERA
+valdkond: isiklik
+liik: veebileht
+staatus: valmis
+kirjeldus: MM 2026 ennustusmängu statistika-plakat
+kogum: MM 2026
+seotud:
+- aquarium
+- worldcup-bot
+stack:
+- HTML
+- xlsx
+portfoolio:
+  kaasa: false
+  avalik: false
+  pitch: ""
+  tulemus: ""
